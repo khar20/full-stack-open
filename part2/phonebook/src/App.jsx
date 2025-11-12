@@ -44,10 +44,23 @@ const App = () => {
           setNewName('')
           setNewNumber('')
 
-          setNotification(`Updated ${returnedPerson.name}'s number`)
+          setNotification({
+            message: `Updated ${returnedPerson.name}'s number`,
+            type: 'success'
+          })
           setTimeout(() => {
             setNotification(null)
           }, 5000)
+        })
+        .catch(error => {
+          setNotification({
+            message: `Information of ${existingPerson.name} has already been removed from server`,
+            type: 'error'
+          })
+          setTimeout(() => {
+            setNotification(null)
+          }, 5000)
+          setPersons(persons.filter(person => person.id !== existingPerson.id))
         })
 
       return
@@ -60,7 +73,10 @@ const App = () => {
         setNewName('')
         setNewNumber('')
 
-        setNotification(`Added ${returnedPerson.name}`)
+        setNotification({
+          message: `Added ${returnedPerson.name}`,
+          type: 'success'
+        })
         setTimeout(() => {
           setNotification(null)
         }, 5000)
@@ -98,7 +114,7 @@ const App = () => {
     <div>
       <h2>Phonebook</h2>
 
-      <Notification message={notification} />
+      <Notification notification={notification} />
 
       <Filter value={filter} onChange={handleFilterChange} />
 
