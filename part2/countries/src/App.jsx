@@ -28,10 +28,14 @@ function App() {
     setFilter(event.target.value)
   }
 
+  const handleShowCountry = (countryName) => {
+    setFilter(countryName)
+  }
+
   return (
     <>
       <Filter value={filter} onChange={handleFilterChange} />
-      <Countries countries={filteredCountries} />
+      <Countries countries={filteredCountries} onClick={handleShowCountry} />
     </>
   )
 }

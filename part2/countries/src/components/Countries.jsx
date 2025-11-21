@@ -1,6 +1,6 @@
 import Country from "./Country"
 
-const Countries = ({ countries }) => {
+const Countries = ({ countries, onClick }) => {
   if (countries.length > 10) {
     return <div>Too many matches, specify another filter</div>
   }
@@ -8,7 +8,7 @@ const Countries = ({ countries }) => {
   if (countries.length > 1 && countries.length <= 10) {
     return (
       countries.map(country =>
-        <div key={country.cca3}>{country.name.common}</div>
+        <div key={country.cca3}>{country.name.common} <button onClick={() => onClick(country.name.common)}>Show</button></div>
       )
     )
   }
